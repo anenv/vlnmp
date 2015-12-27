@@ -49,8 +49,8 @@ esac
 # remove pack
 yum remove -y httpd* php* mysql*
 
-rpm -ivh http://mirrors.ustc.edu.cn/fedora/epel/5/i386/epel-release-5-4.noarch.rpm
-rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-5.rpm
+rpm -ivh https://raw.githubusercontent.com/Anenv/vlnmp/master/centos5/epel-release-5-4.noarch.rpm
+rpm -ivh https://raw.githubusercontent.com/Anenv/vlnmp/master/centos5/remi-release-5.rpm
 
 mkdir /home/mysql
 mkdir /home/mysql/data
@@ -87,11 +87,17 @@ mysqladmin -u root password  $mysqlrootpwd
 
 groupadd www
 useradd -m -s /sbin/nologin -g www www
-		
+rm -rf /home/www		
 		
 rpm -ivh http://nginx.org/packages/centos/5/noarch/RPMS/nginx-release-centos-5-0.el5.ngx.noarch.rpm
 
-yum install nginx  
+yum install nginx 
+
+mv /etc/nginx/nginx.conf  /etc/nginx/nginx.conf.bak
+wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/conf/nginx.conf  -O /etc/nginx/nginx.conf
+mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.bak
+wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/conf/default.conf  -O /etc/nginx/default.conf
+ 
 /etc/init.d/nginx restart
 
 chkconfig httpd off

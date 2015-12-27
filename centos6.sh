@@ -49,8 +49,8 @@ esac
 # remove pack
 yum remove -y httpd* php* mysql*
 
-rpm -ivh http://mirrors.ustc.edu.cn/fedora/epel/6/i386/epel-release-6-8.noarch.rpm
-rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+rpm -ivh https://raw.githubusercontent.com/Anenv/vlnmp/master/centos6/epel-release-6-8.noarch.rpm
+rpm -ivh https://raw.githubusercontent.com/Anenv/vlnmp/master/centos6/remi-release-6.rpm
 
 mkdir /home/mysql
 mkdir /home/mysql/data
@@ -77,7 +77,7 @@ yum install -y php php-fpm php-zip php-curl php-bcmath php-ctype php-exif php-so
 
 /etc/init.d/php-fpm restart
 
-yum install mysql-server  
+yum install -y mysql-server  
 
 mv /etc/my.cnf  /etc/my.cnf.bak
 wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/centos6/my.cnf  -O /etc/my.cnf
@@ -87,10 +87,11 @@ mysqladmin -u root password $mysqlrootpwd
 
 groupadd www
 useradd -m -s /sbin/nologin -g www www
+rm -rf /home/www
 
 rpm -ivh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
 
-yum install nginx  
+yum install -y nginx  
 
 mv /etc/nginx/nginx.conf  /etc/nginx/nginx.conf.bak
 wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/conf/nginx.conf  -O /etc/nginx/nginx.conf
