@@ -3,13 +3,21 @@ centos通过yum一键安装lnmp脚本
 
 Centos5
 
-wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/centos5.sh
-sh centos5.sh
+wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/centos5.sh -O lnmp.sh
+
+chmod a+x lnmp.sh
+
+sh lnmp.sh
+
 
 Centos6
 
-wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/centos6.sh
-sh centos6.sh
+wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/centos6.sh -O lnmp.sh
+
+chmod a+x lnmp.sh
+
+sh lnmp.sh
+
 
 自动安装最新版本PHP+MySql+Nginx，可选安装PHP 5.5.* 或者PHP 5.6.*
 

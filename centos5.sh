@@ -76,7 +76,7 @@ yum install -y php php-fpm php-zip php-curl php-bcmath php-ctype php-exif php-so
 
 /etc/init.d/php-fpm restart
 
-yum install mysql-server  
+yum install -y mysql-server  
 
 mv /etc/my.cnf  /etc/my.cnf.bak
 wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/centos5/my.cnf  -O /etc/my.cnf
@@ -91,7 +91,7 @@ rm -rf /home/www
 		
 rpm -ivh http://nginx.org/packages/centos/5/noarch/RPMS/nginx-release-centos-5-0.el5.ngx.noarch.rpm
 
-yum install nginx 
+yum install -y nginx 
 
 mv /etc/nginx/nginx.conf  /etc/nginx/nginx.conf.bak
 wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/conf/nginx.conf  -O /etc/nginx/nginx.conf
