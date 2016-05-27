@@ -33,3 +33,5 @@ PHP的php.ini文件位置 /etc/php.ini
 MySql的my.cnf位置 /etc/my.cnf
 
 Nginx目录 /etc/nginx
+
+Nginx网站配置目录 /etc/nginx/conf
