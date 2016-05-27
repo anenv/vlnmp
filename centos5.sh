@@ -32,7 +32,7 @@ echo "Install PHP 5.5.*,Please input 5"
 echo "Install PHP 5.6.*,Please input 6"
 read -p "(Please input 5 or 6):" phpversion
 
-case "$phpversion" in
+case "${phpversion}" in
 5)
 echo "You will install PHP 5.5.*"
 phpversion="5"
@@ -67,7 +67,7 @@ EOF
 
 mv /etc/yum.repos.d/remi.repo  /etc/yum.repos.d/remi.repo.bak
 
-if phpversion 6; then
+if [ "${phpversion}" == "6" ]; then
    wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/centos5/remi5.6.repo -O /etc/yum.repos.d/remi.repo
 else
    wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/centos5/remi5.5.repo -O /etc/yum.repos.d/remi.repo
@@ -97,7 +97,11 @@ mv /etc/nginx/nginx.conf  /etc/nginx/nginx.conf.bak
 wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/conf/nginx.conf  -O /etc/nginx/nginx.conf
 mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.bak
 wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/conf/default.conf  -O /etc/nginx/default.conf
- 
+
+mv /etc/php-fpm.d/www.conf  /etc/php-fpm.d/www.conf.bak
+wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/conf/www.conf  -O /etc/php-fpm.d/www.conf
+
+chown -R www.www /home/wwwroot
 /etc/init.d/nginx restart
 
 chkconfig httpd off
