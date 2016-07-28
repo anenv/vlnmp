@@ -17,6 +17,11 @@ echo "#      Author: Anenv(anenv@live.cn)       #"
 echo "###########################################"
 echo ""
 
+#Disable SeLinux
+if [ -s /etc/selinux/config ]; then
+	sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+fi
+
 mysqlrootpwd="root"
 echo "Please input the root password of mysql:"
 read -p "(Default password: root):" mysqlrootpwd
