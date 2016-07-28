@@ -1,6 +1,6 @@
 #! /bin/bash
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
-export PATH
+
 
 ###########################################
 #        Centos Yum Install LNMP          #
@@ -8,7 +8,7 @@ export PATH
 #      Author: Anenv(anenv@live.cn)       #
 ###########################################
 
-clear
+
 echo ""
 echo "###########################################"
 echo "#        Centos Yum Install LNMP          #"
