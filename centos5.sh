@@ -51,6 +51,22 @@ echo "INPUT error,You will install PHP 5.5.*"
 phpversion="5"
 esac
 
+#Disable SeLinux
+if [ -s /etc/selinux/config ]; then
+    sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/selinux/config
+fi
+
+#Set_Timezone
+echo "Setting timezone..."
+rm -rf /etc/localtime
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+#CentOS_InstallNTP()
+echo "[+] Installing ntp..."
+yum install -y ntp
+ntpdate -u pool.ntp.org
+date
+
 # remove pack
 yum remove -y httpd* php* mysql*
 
@@ -79,6 +95,12 @@ else
 fi
 yum install -y php php-fpm php-zip php-curl php-bcmath php-ctype php-exif php-sockets php-session php-gd php-mbstring php-mcrypt php-mysql php-json php-ioncube-loader php-xml php-xmlrpc php-xcache xcache-admin php-soap php-opcache php-pdo php-imap
 
+mv /etc/php.ini  /etc/php.ini.bak
+wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/conf/php.ini  -O /etc/php.ini
+
+mv /etc/php-fpm.d/www.conf  /etc/php-fpm.d/www.conf.bak
+wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/conf/www.conf  -O /etc/php-fpm.d/www.conf
+
 /etc/init.d/php-fpm restart
 
 yum install -y mysql-server  
@@ -102,9 +124,6 @@ mv /etc/nginx/nginx.conf  /etc/nginx/nginx.conf.bak
 wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/conf/nginx.conf  -O /etc/nginx/nginx.conf
 mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.bak
 wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/conf/default.conf  -O /etc/nginx/default.conf
-
-mv /etc/php-fpm.d/www.conf  /etc/php-fpm.d/www.conf.bak
-wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/conf/www.conf  -O /etc/php-fpm.d/www.conf
 
 chown -R www.www /home/wwwroot
 /etc/init.d/nginx restart
