@@ -17,11 +17,6 @@ echo "#      Author: Anenv(anenv@live.cn)       #"
 echo "###########################################"
 echo ""
 
-#Disable SeLinux
-if [ -s /etc/selinux/config ]; then
-	sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
-fi
-
 mysqlrootpwd="root"
 echo "Please input the root password of mysql:"
 read -p "(Default password: root):" mysqlrootpwd
@@ -70,6 +65,10 @@ date
 # remove pack
 yum remove -y httpd* php* mysql*
 
+groupadd www
+useradd -m -s /sbin/nologin -g www www
+rm -rf /home/www
+
 rpm -ivh https://raw.githubusercontent.com/Anenv/vlnmp/master/centos5/epel-release-5-4.noarch.rpm
 rpm -ivh https://raw.githubusercontent.com/Anenv/vlnmp/master/centos5/remi-release-5.rpm
 
@@ -109,12 +108,7 @@ mv /etc/my.cnf  /etc/my.cnf.bak
 wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/centos5/my.cnf  -O /etc/my.cnf
 
 /etc/init.d/mysqld restart
-mysqladmin -u root password  $mysqlrootpwd
-
-
-groupadd www
-useradd -m -s /sbin/nologin -g www www
-rm -rf /home/www		
+mysqladmin -u root password  $mysqlrootpwd		
 		
 rpm -ivh http://nginx.org/packages/centos/5/noarch/RPMS/nginx-release-centos-5-0.el5.ngx.noarch.rpm
 

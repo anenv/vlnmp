@@ -63,6 +63,10 @@ date
 # remove pack
 yum remove -y httpd* php* mysql*
 
+groupadd www
+useradd -m -s /sbin/nologin -g www www
+rm -rf /home/www
+
 rpm -ivh https://raw.githubusercontent.com/Anenv/vlnmp/master/centos6/epel-release-6-8.noarch.rpm
 rpm -ivh https://raw.githubusercontent.com/Anenv/vlnmp/master/centos6/remi-release-6.rpm
 
@@ -104,10 +108,6 @@ wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master
 
 /etc/init.d/mysqld restart
 mysqladmin -u root password $mysqlrootpwd
-
-groupadd www
-useradd -m -s /sbin/nologin -g www www
-rm -rf /home/www
 
 rpm -ivh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
 
