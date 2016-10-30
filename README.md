@@ -1,23 +1,13 @@
 # vlnmp
-centos通过yum一键安装lnmp脚本
+centos通过yum一键安装lnmp脚本，目前只有centos版本。
 
-## Centos5
+## Centos
 
 <pre>
-wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/centos5.sh -O lnmp.sh
+wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/centos.sh -O lnmp.sh
 chmod +x lnmp.sh
 sh lnmp.sh
 </pre>
-
-
-
-## Centos6
-
-``` vim
-wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/centos6.sh -O lnmp.sh
-chmod +x lnmp.sh
-sh lnmp.sh
-```
 
 
 ## 说明及文件位置
