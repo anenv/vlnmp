@@ -3,11 +3,11 @@ centos通过yum一键安装lnmp脚本
 
 ## Centos5
 
-``` vim
+<pre>
 wget --no-check-certificate https://raw.githubusercontent.com/Anenv/vlnmp/master/centos5.sh -O lnmp.sh
 chmod +x lnmp.sh
 sh lnmp.sh
-```
+</pre>
 
 
 
