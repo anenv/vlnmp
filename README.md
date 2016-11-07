@@ -1,5 +1,5 @@
 # vlnmp
-centos通过yum一键安装lnmp脚本，目前只有centos版本。
+centos通过yum一键安装lnmp脚本，目前只有centos6版本。
 
 ## Centos
 
